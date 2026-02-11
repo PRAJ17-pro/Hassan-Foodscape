@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hassan Food Scope</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white">
+
+<!-- HEADER -->
+<header class="sticky top-0 z-50 backdrop-blur-xl bg-black/70 border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 py-4">
+    <h1 class="text-2xl sm:text-3xl font-bold text-center sm:text-left">
+      Hassan Food Scope
+    </h1>
+  </div> 
+</header>
+
+<!-- HERO SECTION -->
+<section
+  id="hero"
+  class="relative w-full h-[90vh] bg-center bg-cover"
+  style="background-image:url('WhatsApp Image 2026-01-25 at 5.43.01 PM.jpeg');"
+>
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <div
+    id="heroText"
+    class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4
+           opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+  >
+    <h2 class="text-4xl sm:text-5xl font-extrabold mb-4">
+      Discover Hassan’s Best Food
+    </h2>
+
+    <p class="text-gray-300 max-w-2xl text-lg mb-8">
+      From Benne Dosa to Biryani & Desserts — explore the best food places in Hassan
+    </p>
+
+    <!-- SEARCH BAR -->
+    <div class="w-full max-w-2xl">
+      <div class="flex items-center gap-3 bg-white/10 backdrop-blur-xl border border-white/20
+                  rounded-2xl px-5 py-4 shadow-2xl">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             class="h-6 w-6 text-gray-300"
+             fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M21 21l-4.35-4.35M16 10.5A5.5 5.5 0 105.5 16 5.5 5.5 0 0016 10.5z" />
+        </svg>
+
+        <input
+          id="searchInput"
+          type="text"
+          placeholder="Search dosa, biryani, ice cream..."
+          class="w-full bg-transparent outline-none text-white placeholder-gray-300 text-lg"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD LIST -->
+<section class="max-w-7xl mx-auto px-4 py-12">
+  <h2 class="text-3xl font-bold mb-2">Food Places</h2>
+  <p id="countText" class="text-gray-400 mb-6"></p>
+
+  <div
+    id="foodGrid"
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+  </div>
+</section>
+
+<script>
+// ---------------- DATA ----------------
+const foodPlaces = [
+ {id:1,name:"1952 Coffee",items:"Filter Coffee, Walnut Banana Cake",location:"Hassan",tag:"Cafe"},
+  {id:2,name:"Sri Hanuman Jalebi",items:"Jalebi",location:"Gandhi Bazar, Hassan",tag:"Sweet"},
+  {id:3,name:"Hilal’s",items:"Juice",location:"233X+GJP, Ammeer Mohalla, Hassan, Karnataka 573201, India",tag:"Juice"},
+  {id:4,name:"ಗುಂಡಣ್ಣ ಬೇಕರಿ",items:"Chocolate Bun, Egg Puff",location:"Doddabasadi Road,Hassan",tag:"Bakery"},
+  {id:5,name:"Shri Gajanana Refreshments",items:"Benne Dosa",location:"Krishnaraja Puram 5th cross st, Sampige Road, Hassan, Karnataka 573201, India",tag:"Restaurant"},
+  {id:6,name:"Hotel Gommatadri Veg",items:"Rice Sambar, Chapati",location:"MG Road",tag:"Meals"},
+  {id:7,name:"Halli Mane Baduta",items:"Family Restaurant",location:"BM Road",tag:"Non-Veg"},
+  {id:8,name:"Arya Mansion",items:"South Indian Meals",location:"Hassan",tag:"Meals"},
+  {id:9,name:"Parijata Restaurant",items:"South Indian, Chinese",location:"High School Field Road",tag:"Meals"},
+  {id:10,name:"Arun Chats",items:"Chats",location:"KR Puram",tag:"Chats"},
+  {id:11,name:"Classy Restaurant",items:"Grill Chicken",location:"Race Course Road",tag:"Grill"},
+  {id:12,name:"Corn Territory",items:"Corn",location:"Jaya Nagar",tag:"Snack"},
+  {id:13,name:"Idli Mamu Hotel",items:"Idli, Dosa, Vada",location:"Penshan Mohalla",tag:"Breakfast"},
+  {id:14,name:"HVR Veg Tiffin Center",items:"Button Idli, Kesari Bath",location:"2445+4R3, 2nd Main road, Kuvempu Nagar, Krishnaraja Pura, Hassan, Karnataka 573201, India",tag:"Breakfast"},
+  {id:15,name:"Pastel Cakes",items:"Cakes",location:"Near Sanjeevini Hospital Road, KR Puram,Hassan",tag:"Bakery"},
+  {id:16,name:"Mamatha Hotel",items:"Biryani",location:"BM Road",tag:"Biryani"},
+  {id:17,name:"Shawarma",items:"Shawarma",location:"KR Puram",tag:"Rolls"},
+  {id:18,name:"Hassan vaibhav veg benne dose corner",items:"Benne Dose",location:"234W+CHR ರಾಮಮಂದಿರ ಹತ್ತಿರ, ಪಾಂಡುರಂಗದೇವಸ್ಥಾನದ ಹಿಂಭಾಗ, Penshan Mohalla, Hassan, Karnataka 573201, India",tag:"Dosa"},
+  {id:19,name:"Sanman Hotel",items:"North & South Indian Meals",location:"23, Old Bus Stand Rd, Ammeer Mohalla, Hassan, Karnataka 573201, India",tag:"Meals"},
+  {id:20,name:"Pillai Mess",items:"Mutton Biryani",location:"Hosaline Road",tag:"Non-Veg"},
+  {id:21,name:"Venkys SLJ Bakery",items:"Cake, Puffs",location:"MG Road",tag:"Bakery"},
+  {id:22,name:"Apsara Ice Creams",items:"Ice Cream",location:"KR Puram",tag:"Ice Cream"},
+  {id:23,name:"Hasanamba Dose Corner",items:"Dosa",location:"Salagame Road",tag:"Breakfast"},
+  {id:24,name:"Belgian Waffles",items:"Waffles",location:" Park Rd, Rangoli Halla, Hassan, Karnataka 573201",tag:"Dessert"},
+    {id:25, name:"Dum Biryani (ಅಕ್ಷಯ್ ಊಟದ ಮನೆ)", items:"Dum Biryani", location:"Opposite Masters PU College, Hoysalanagar Main Rd, Krishnaraja Pura", tag:"Biryani"},
+ {id:26, name:"Lalitha Bakery", items:"Honey Cake, Aloo Bun", location:"Gandhi bazar, Main Road, Ammeer Mohalla, Hassan, Karnataka 573201, India", tag:"Bakery"},
+  {id:27, name:"Lakshmi Sweets and Tiffins", items:"Chapati,Mentha Chapati,Badam milk", location:" Opposite old bus stand,Hassan ", tag:"Sweet"},
+  {id:28, name:"Pavithra Fast Food", items:"Roti,butter roti,Gobi", location:"Ravindra Nagar, Vidhya Nagar", tag:"fast meals"},
+  {id:29, name:"Harsha Sweets", items:"Champakali, Jamoon & more", location:"Near Dwaragate Circle, Hassan", tag:"Sweet"},
+  {id:30, name:"Devanarayan Pav Bhaji Centre", items:"Pav Bhaji, Vada Pav", location:"MG Rd, behind Stadium, Vidhya Nagar, Hassan, Karnataka 573202", tag:"Street Food"},
+  {id:31, name:"HVR Veg", items:"Benne dosa,Vada", location:"KR Puram,hassan", tag:"Breakfast"},
+  {id:32,  name:"Momos", items:"Momos", location:"MG Road, Near BNR School, Beside Kuntappa Choultry", tag:"Street Food"},
+  { id: 33, name: "Preetham's Bread Bajji", items: "Bread Bajji, Capsicum Bajji", location: "Hemavathi Nagara", tag: "Bajji" },
+];
+
+// ---------------- LOGIC ----------------
+const searchInput = document.getElementById("searchInput");
+const foodGrid = document.getElementById("foodGrid");
+const countText = document.getElementById("countText");
+
+searchInput.addEventListener("input", render);
+
+function render() {
+  const query = searchInput.value.toLowerCase();
+  const filtered = foodPlaces.filter(p =>
+    p.name.toLowerCase().includes(query) ||
+    p.items.toLowerCase().includes(query)
+  );
+
+  countText.textContent = `${filtered.length} place(s) shown`;
+  foodGrid.innerHTML = "";
+
+  filtered.forEach(p => {
+    const card = document.createElement("div");
+
+    // ⭐ HOVER EFFECTS ADDED HERE
+    card.className = `
+      bg-gradient-to-br from-gray-800 to-gray-900
+      rounded-xl p-6 border border-gray-700 shadow-xl
+      transition-all duration-300 ease-out
+      hover:-translate-y-2 hover:shadow-2xl
+      hover:border-blue-500/50
+      hover:from-gray-700 hover:to-gray-900
+    `;
+
+    card.innerHTML = `
+      <h3 class="text-xl font-bold mb-2">${p.id}. ${p.name}</h3>
+      <p class="text-blue-300 text-sm">${p.items}</p>
+      <p class="text-gray-300 text-sm mt-2">${p.location}</p>
+
+      <div class="flex justify-between items-center mt-4">
+        <span class="px-4 py-1 bg-blue-600 text-xs rounded-full">
+          ${p.tag}
+        </span>
+
+        <button
+          class="view-map-btn bg-white text-black px-3 py-2 rounded
+                 transition-all duration-300
+                 hover:bg-blue-600 hover:text-white hover:scale-105">
+          View on Maps
+        </button>
+      </div>
+
+      <div class="map-container mt-4 hidden">
+        <iframe
+          src="https://www.google.com/maps?q=${encodeURIComponent(p.name+' '+p.location)}&output=embed"
+          width="100%" height="250"
+          style="border:0;"
+          loading="lazy">
+        </iframe>
+      </div>
+    `;
+
+    const btn = card.querySelector(".view-map-btn");
+    const mapDiv = card.querySelector(".map-container");
+
+    btn.addEventListener("click", () => {
+      mapDiv.classList.toggle("hidden");
+      mapDiv.scrollIntoView({ behavior: "smooth" });
+    });
+
+    foodGrid.appendChild(card);
+  });
+}
+
+render();
+
+// HERO ANIMATION
+const heroText = document.getElementById("heroText");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      heroText.classList.remove("opacity-0", "translate-y-10");
+      heroText.classList.add("opacity-100", "translate-y-0");
+    }
+  });
+}, { threshold: 0.4 });
+
+observer.observe(heroText);
+</script>
+
+</body>
+</html>
