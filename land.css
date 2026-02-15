@@ -16,7 +16,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 20px 60px;
-  background-color: #111;
+  background-color: #000000;
 }
 
 .logo {
@@ -107,4 +107,5 @@ body {
     font-size: 36px;
   }
 }
+
 
