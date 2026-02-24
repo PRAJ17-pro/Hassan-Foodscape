@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hassan Best Foods</title>
 
-<!-- GSAP CDN -->
+<!-- Premium Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
@@ -23,7 +26,7 @@ html{
 }
 
 body{
-  font-family:"Segoe UI",sans-serif;
+  font-family:'Poppins', sans-serif;
   background:#0a0a0a;
   color:white;
   overflow-x:hidden;
@@ -52,32 +55,24 @@ body{
 }
 
 .logo img{
-  height:110px;
+  height:100px;
 }
 
-/* NAVIGATION */
+/* NAV */
 .nav a{
   color:white;
   text-decoration:none;
   margin-left:30px;
-  font-size:16px;
-  position:relative;
+  font-size:15px;
+  padding:8px 20px;
+  border:1px solid #ff7b00;
+  border-radius:30px;
   transition:0.3s;
 }
 
-.nav a::after{
-  content:"";
-  position:absolute;
-  bottom:-5px;
-  left:0;
-  width:0%;
-  height:2px;
+.nav a:hover{
   background:#ff7b00;
-  transition:0.3s;
-}
-
-.nav a:hover::after{
-  width:100%;
+  color:black;
 }
 
 /* ===== HERO VIDEO ===== */
@@ -99,7 +94,7 @@ body{
   position:absolute;
   width:100%;
   height:100%;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.9));
+  background:linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.95));
   z-index:1;
 }
 
@@ -115,25 +110,26 @@ body{
 }
 
 .hero-content p{
-  font-size:38px;
-  max-width:800px;
+  font-size:42px;
+  max-width:900px;
   letter-spacing:1px;
+  font-weight:600;
 }
 
-/* ===== PREMIUM SECTIONS ===== */
+/* ===== SECTIONS ===== */
 .section{
   min-height:100vh;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:100px 80px;
+  padding:120px 80px;
   perspective:1000px;
 }
 
 .card{
   background:rgba(255,255,255,0.05);
   backdrop-filter:blur(20px);
-  border-radius:20px;
+  border-radius:25px;
   padding:60px;
   max-width:1100px;
   display:flex;
@@ -141,29 +137,55 @@ body{
   align-items:center;
   transform-style:preserve-3d;
   box-shadow:0 40px 80px rgba(0,0,0,0.5);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
+/* Hover Lift Effect */
+.card:hover{
+  transform: translateY(-15px) scale(1.02);
+  box-shadow:0 60px 120px rgba(0,0,0,0.7);
+}
+
+/* Image */
 .card img{
   width:450px;
-  border-radius:15px;
+  border-radius:20px;
+  transition:0.5s;
+}
+
+/* Floating Glow Effect */
+.card img:hover{
+  transform:scale(1.05);
+  filter:brightness(1.1);
 }
 
 .card h2{
-  font-size:48px;
+  font-size:50px;
   margin-bottom:20px;
 }
 
 .card p{
   font-size:18px;
-  opacity:0.8;
+  opacity:0.75;
 }
 
 /* ===== FOOTER ===== */
 .footer{
-  padding:40px;
+  padding:60px;
   text-align:center;
   background:#111;
-  opacity:0.7;
+}
+
+.footer h3{
+  font-size:24px;
+  margin-bottom:15px;
+  font-weight:600;
+}
+
+.footer p{
+  opacity:0.6;
+  font-size:14px;
+  margin-bottom:8px;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -176,7 +198,7 @@ body{
     width:100%;
   }
   .hero-content p{
-    font-size:24px;
+    font-size:26px;
   }
 }
 
@@ -185,18 +207,16 @@ body{
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="logo">
     <img src="Gemini_Generated_Image_juqkmhjuqkmhjuqk-Photoroom.png">
   </div>
 
   <nav class="nav">
-    <a href="EXLPOREPAGE.html">Explore</a>
+    <a href="#explore">Explore Menu</a>
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero-video">
   <video autoplay muted loop playsinline>
     <source src="HERO-VIDEO.mp4" type="video/mp4">
@@ -208,7 +228,6 @@ body{
   </div>
 </section>
 
-<!-- SECTION 1 -->
 <section class="section" id="explore">
   <div class="card">
     <img src="113810989.avif">
@@ -219,7 +238,6 @@ body{
   </div>
 </section>
 
-<!-- SECTION 2 -->
 <section class="section">
   <div class="card">
     <img src="What-are-some-must-try-Indian-non-veg-dishes.webp">
@@ -230,7 +248,6 @@ body{
   </div>
 </section>
 
-<!-- SECTION 3 -->
 <section class="section">
   <div class="card">
     <img src="pav-bhaji-served-buttered-bread-steel-plate-pav-bhaji-served-buttered-bread-steel-plate-380631900.webp">
@@ -242,28 +259,38 @@ body{
 </section>
 
 <footer class="footer">
-  © 2026 Hassan Best Foods. All rights reserved.
+  <h3>Hassan Best Foods</h3>
+  <p>Authentic Taste. Timeless Tradition.</p>
+  <p>© 2026 All Rights Reserved</p>
 </footer>
 
 <script>
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Navbar shrink on scroll */
+/* Navbar shrink */
 window.addEventListener("scroll",()=>{
   document.querySelector(".header")
   .classList.toggle("scrolled", window.scrollY > 50);
 });
 
-/* Hero animation */
+/* Cinematic Hero Animation */
 gsap.from(".hero-content p",{
-  y:80,
+  y:120,
   opacity:0,
-  duration:2,
-  ease:"power3.out"
+  duration:1.8,
+  ease:"power4.out"
 });
 
-/* 3D Scroll animation */
+gsap.to(".hero-content p",{
+  scale:1.05,
+  duration:6,
+  repeat:-1,
+  yoyo:true,
+  ease:"sine.inOut"
+});
+
+/* 3D Scroll Animation */
 gsap.utils.toArray(".card").forEach(card=>{
   gsap.from(card,{
     scrollTrigger:{
@@ -276,6 +303,18 @@ gsap.utils.toArray(".card").forEach(card=>{
     rotateX:15,
     duration:1.5,
     ease:"power3.out"
+  });
+});
+
+/* Parallax Image Effect */
+gsap.utils.toArray(".card img").forEach(img=>{
+  gsap.to(img,{
+    scrollTrigger:{
+      trigger:img,
+      scrub:true
+    },
+    y:50,
+    ease:"none"
   });
 });
 
